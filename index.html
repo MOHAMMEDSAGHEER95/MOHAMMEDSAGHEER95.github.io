@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create service</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+<form id="create_service" action="http://api.lifeup.com.sg:8003/v1/onlineservice/create" method="post">
+    <input type="hidden" id="token" name="token">
+    <input type="hidden" id="username" name="username">
+
+  <div class="form-group">
+    <label for="services">Select Service</label>
+      <select id="services" class="form-control" name="service_option">
+
+      </select>
+
+  </div>
+  <div class="form-group">
+    <label for="scheduled_date">Scheduled Date</label>
+     <input id="scheduled_date" class="datepicker" type="text" name="scheduled_date">
+  </div>
+  <div class="form-check">
+     <input type="radio" name="payment" id="payment" value="cash" checked="checked"> Cash<br>
+    <label class="form-check-label" for="payment">Payment</label>
+  </div>
+    <div class="form-group">
+    <label for="email_id">Email</label>
+     <input id="email_id" class="form-control" type="email" name="email_id">
+  </div>
+     <div class="form-group">
+    <label for="mobile_no">Mobile</label>
+     <input id="mobile_no" class="form-control" type="number" name="mobile_no">
+  </div>
+    <div class="form-group">
+    <label for="notes">Notes</label>
+     <input id="notes" class="form-control" type="text" name="notes">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+    </div>
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
+<script>
+   $('#token').val(localStorage.getItem("token"));
+   $('#username').val(localStorage.getItem("username"));
+
+$('.datepicker').datepicker(
+{dateFormat: 'yy-mm-dd' }
+);
+   $.getJSON( "http://api.lifeup.com.sg:8003/v1/onlineservice/getserviceoptions/ac/", function( data ) {
+  var toAppend = '';
+  $.each( data.data, function( key, val ) {
+      toAppend += '<option value='+val.id+'>'+val.display_name+'</option>';
+  });
+  $('#services').append(toAppend);
+
+
+
+});
+$("#create_service").submit(function(e) {
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+
+    var form = $(this);
+    var url = form.attr('action');
+
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: form.serialize(), // serializes the form's elements.
+           success: function(data)
+           {
+               alert(data['message']); // show response from the script.
+           }
+         });
+
+
+});
+</script>
+</html>
