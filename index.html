@@ -28,20 +28,17 @@
 </table>
 <div class="container">
     <div class="row">
-<form action="create_service.html" method="post">
-    <input type="hidden" name="username">
-    <input type="submit" class="btn btn-primary" value="create service">
-</form>
+<a href="create_service.html">Create service</a>
         </div>
     </div>
 </body>
 
 <script>
      localStorage.setItem("username", "85517460");
-     localStorage.setItem("token", "Token fc7826fec72f609c28dc76ff5b1588dbdca56b5d");
+     localStorage.setItem("token", "Token 7b124dbcf885f617c6781d2ce84792cbf242d5d0");
     var toAppend = ''
      var url = 'http://api.lifeup.com.sg:8003/v1/onlineservice/retrieve_requests';
-var data = {token:'Token fc7826fec72f609c28dc76ff5b1588dbdca56b5d',username:'85517460'};
+var data = {token:'Token 7b124dbcf885f617c6781d2ce84792cbf242d5d0',username:'85517460'};
 var i=1
 fetch(url, {
   method: 'POST', // or 'PUT'
