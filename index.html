@@ -2,54 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Service List</title>
-    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3d Card Effect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<table class="table" id="listtable">
-  <thead>
-    <tr>
-      <th scope="col">SL No</th>
-      <th scope="col">Service</th>
-      <th scope="col">Email</th>
-      <th scope="col">Status</th>
-       <th scope="col">Date</th>
-        <th scope="col">Contact</th>
-    </tr>
-  <tbody>
-
-</tbody>
-  </thead>
-
-</table>
-<div class="container">
-    <div class="row">
-<a href="create_service.html">Create service</a>
+    <div class="container">
+        <div class="card">
+            <div class="sneaker">
+                <div class="circle"></div>
+                <img src="adidas.png" alt="adidas">
+            </div>
+            <div class="info">
+                <h1 class="title">Adidas ZX</h1>
+                <h3>FUTURE-READY TRAINERS WITH WRAPPED BOOST FOR EXCEPTION COMFORT.</h3>
+                <div class="sizes">
+                    <button>39</button>
+                    <button>40</button>
+                    <button>42</button>
+                    <button>44</button>
+                </div>
+                <div class="purchase">
+                    <button>Purchase</button>
+                </div>
+            </div>
         </div>
+        <div class="id_card card">
+            <div class="sneaker">
+                <div class="circle"></div>
+                <img src="unnamed.png" alt="adidas">
+            </div>
+            <div class="info">
+                <h1 class="title">Nike</h1>
+                <h3>FUTURE-READY TRAINERS WITH WRAPPED BOOST FOR EXCEPTION COMFORT.</h3>
+                <div class="sizes">
+                    <button>39</button>
+                    <button>40</button>
+                    <button>42</button>
+                    <button>44</button>
+                </div>
+                <div class="purchase">
+                    <button>Purchase</button>
+                </div>
+            </div>
+        </div>
+         
     </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
 </body>
-
-<script>
-     localStorage.setItem("username", "85517460");
-     localStorage.setItem("token", "Token 7b124dbcf885f617c6781d2ce84792cbf242d5d0");
-    var toAppend = ''
-     var url = 'http://api.lifeup.com.sg:8003/v1/onlineservice/retrieve_requests';
-var data = {token:'Token 7b124dbcf885f617c6781d2ce84792cbf242d5d0',username:'85517460'};
-var i=1
-fetch(url, {
-  method: 'POST', // or 'PUT'
-  body: $.param(data), // data can be `string` or {object}!
-  headers:{
-    'Content-Type': 'application/x-www-form-urlencoded'
-  }
-}).then(res => res.json())
-.then(response => {$.each( response.data, function( key, val ) { toAppend += '<tr><td>'+i++ +'</td><td>'+val.service_option+'</td><td>'+val.email_id+'</td><td>status</td><td>'+val.scheduled_date+'</td><td>'+val.mobile_no+'</td></tr>';})
-$("#listtable tbody").append(toAppend)}
-)
-.catch(error => console.error('Error:', error));
-</script>
 </html>
